@@ -21,3 +21,6 @@
 /yarn-error.log
 
 .byebug_history
+
+# Mac OS .DS_Store
+.DS_Store
