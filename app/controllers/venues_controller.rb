@@ -12,6 +12,10 @@ class VenuesController < ApplicationController
     @venue = Venue.new
   end
 
+  def edit
+    @venue = Venue.find(params[:id])
+  end
+
   def create
     @venue = Venue.new(venue_params)
 
@@ -19,6 +23,16 @@ class VenuesController < ApplicationController
       redirect_to @venue
     else
       render 'new'
+    end
+  end
+
+  def update
+    @venue = Venue.find(params[:id])
+
+    if @venue.update(venue_params)
+      redirect_to @venue
+    else
+      render 'edit'
     end
   end
 
