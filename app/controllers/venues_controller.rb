@@ -4,6 +4,15 @@ class VenuesController < ApplicationController
   end
 
   def create
-    render plain: params[:venue].inspect
+    @venue = Venue.new(venue_params)
+
+    @venue.save
+    redirect_to @venue
   end
+end
+
+private
+
+def venue_params
+  params.require(:venue).permit(:name)
 end
