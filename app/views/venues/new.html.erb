@@ -1,5 +1,18 @@
 <h1>New Venue</h1>
 <%= form_for :venue, url: venues_path do |f| %>
+  <% if @venue.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@venue.errors.count, "error") %> prohibited this article from being saved:
+      </h2>
+      <ul>
+        <% @venue.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+      </ul>
+    </div>
+  <% end %>
+
+
   <p>
     <%= f.label :name %>
     <%= f.text_field :name %>
