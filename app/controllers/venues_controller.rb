@@ -10,6 +10,7 @@ class VenuesController < ApplicationController
 
   def new
     @venue = Venue.new
+    2.times { @venue.rooms.build}
   end
 
   def edit
@@ -46,6 +47,6 @@ class VenuesController < ApplicationController
   private
 
   def venue_params
-    params.require(:venue).permit(:name)
+    params.require(:venue).permit(:name, rooms_attributes: [:id, :roomName])
   end
 end

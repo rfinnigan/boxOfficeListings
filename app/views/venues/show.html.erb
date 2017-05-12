@@ -4,4 +4,14 @@
   <%= @venue.name %>
 </p>
 
+<h2>Rooms</h2>
+<% @venue.rooms.each do |rooms| %>
+  <p>
+    <strong>Room:</strong>
+    <%= rooms.roomName %>
+  </p>
+
+
+<% end %>
+
 <%= link_to 'Back', venues_path %>

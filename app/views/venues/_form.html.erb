@@ -17,6 +17,17 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
   </p>
+  <ul>
+      <%= f.fields_for :rooms do |rooms_form| %>
+        <li>
+          <%= rooms_form.label :roomName%>
+          <%= rooms_form.text_field :roomName %>
+
+
+          ...
+        </li>
+      <% end %>
+    </ul>
 
   <p>
     <%= f.submit %>
