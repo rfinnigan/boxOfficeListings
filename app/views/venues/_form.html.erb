@@ -18,16 +18,10 @@
     <%= f.text_field :name %>
   </p>
   <ul>
-      <%= f.fields_for :rooms do |rooms_form| %>
-        <li>
-          <%= rooms_form.label :roomName%>
-          <%= rooms_form.text_field :roomName %>
-
-
-          ...
-        </li>
-      <% end %>
-    </ul>
+    <%= f.fields_for :rooms do |rooms_form| %>
+      <%= render 'rooms/form', f: rooms_form %>
+    <% end %>
+  </ul>
 
   <p>
     <%= f.submit %>
