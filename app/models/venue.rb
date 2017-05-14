@@ -1,6 +1,7 @@
 # model for a Venue
 class Venue < ApplicationRecord
-  has_many :rooms
+  has_many :rooms,
+  dependent: :destroy
   accepts_nested_attributes_for :rooms
   validates :name, presence: true,
                    length: { minimum: 2 },

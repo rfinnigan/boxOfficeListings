@@ -5,12 +5,7 @@
 </p>
 
 <h2>Rooms</h2>
-<% @venue.rooms.each do |rooms| %>
-  <p>
-    <strong>Room:</strong>
-    <%= rooms.roomName %>
-  </p>
-
+<%= render @venue.rooms %>
 
 <% end %>
 
