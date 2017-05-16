@@ -1,11 +1,10 @@
 <p>
   <h1><%= @venue.name %></h1>
+  <strong><%= link_to 'Add New Room', new_venue_room_path(@venue) %></strong>
 
 </p>
 
 
 <%= render @venue.rooms %>
 
-
-
-<%= link_to 'Back', venues_path %>
+<%= link_to 'Back to all Venues', venues_path %>
