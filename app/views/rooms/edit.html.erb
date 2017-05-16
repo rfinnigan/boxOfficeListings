@@ -2,4 +2,9 @@
 
 <%= render 'form' %>
 
+
+
 <%= link_to 'Back', venues_path %>
+<%= link_to 'Delete Room', [@room],
+method: :delete,
+data: {confirm: "Are you sure you want to delete this room and all it's shows and performances?"}%>
