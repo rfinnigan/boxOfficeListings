@@ -2,5 +2,7 @@
 <tr>
   <td><u><%= show.artist %></u></td>
   <td><%= show.title %></td>
-  <td><%= link_to 'Edit', edit_show_path(show)%></td>
-</tr>
+  <td><%= link_to 'Edit', edit_show_path(show)%>
+  <td><%= link_to 'Delete', [show],
+    method: :delete,
+    data: {confirm: "Are you sure you want to delete this show and all it's  performances?"}%></td>

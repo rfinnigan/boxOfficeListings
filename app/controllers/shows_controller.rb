@@ -26,6 +26,14 @@ class ShowsController < ApplicationController
     end
   end
 
+  def destroy
+    @show = Show.find(params[:id])
+    @room = Room.find(@show[:room_id])
+    @venue = Venue.find(@room[:venue_id])
+    @show.destroy
+    redirect_to venue_path(@venue)
+  end
+
   private
 
   # method for settting venue & room instance variables
