@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   shallow do
     resources :venues do
       resources :rooms do
-        resources :shows
+        resources :shows do
+          resources :performances
+        end
       end
     end
   end

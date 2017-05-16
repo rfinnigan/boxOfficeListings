@@ -10,8 +10,8 @@ class ShowsController < ApplicationController
   end
 
   def create
-      @show = @room.shows.create(show_params)
-      redirect_to venue_path( id: @room.venue_id)
+    @show = @room.shows.create(show_params)
+    redirect_to venue_path(id: @room.venue_id)
   end
 
   def update
