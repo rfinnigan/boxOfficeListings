@@ -1,3 +1,4 @@
+# basic model for Rooms (sub venues) of a Venue
 class Room < ApplicationRecord
   belongs_to :venue
   has_many :shows

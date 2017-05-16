@@ -7,9 +7,9 @@
   <% @venues.each do |venue| %>
     <tr>
       <td><%= venue.name %></td>
-      <td><%= link_to 'Show', venue_path(venue) %></td>
-      <td><%= link_to 'Edit', edit_venue_path(venue) %></td>
-      <td><%= link_to 'Delete', venue_path(venue), method: :delete, data: {confirm: 'Are you sure you want to delete this Venue?' } %> </td>
+      <td><%= link_to 'Rooms and Performances', venue_path(venue) %></td>
+      <td><%= link_to 'Edit Venue', edit_venue_path(venue) %></td>
+      <td><%= link_to 'Delete Venue', venue_path(venue), method: :delete, data: {confirm: 'Are you sure you want to delete this Venue?' } %> </td>
     </tr>
   <% end %>
 </table>
