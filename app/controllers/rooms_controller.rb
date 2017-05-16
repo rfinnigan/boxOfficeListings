@@ -1,3 +1,4 @@
+# controller class for room model
 class RoomsController < ApplicationController
   before_action :set_venue, only: [:index, :new, :create]
 
@@ -29,13 +30,17 @@ class RoomsController < ApplicationController
   end
 
   def destroy
-    @room = @venue.rooms.find(params[:id])
+    @room = Room.find(params[:id])
+    @venue = Venue.find(@room[:venue_id])
     @room.destroy
     redirect_to venue_path(@venue)
   end
 
   private
 
+  # method for settting venue from passed venue_id param
+  # when using shallow nesting this will only work when called
+  # from index, new and create
   def set_venue
     @venue = Venue.find(params[:venue_id])
   end
