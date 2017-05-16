@@ -1,5 +1,6 @@
 <p>
   <h2><%= room.roomName %></h2>
+  <%= link_to 'Edit Room', edit_room_path(room)%>
   <%= link_to 'New Show', new_room_show_path(room) %>
 
 </p>
