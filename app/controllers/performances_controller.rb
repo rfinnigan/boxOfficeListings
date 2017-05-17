@@ -27,6 +27,15 @@ class PerformancesController < ApplicationController
     end
   end
 
+  def destroy
+    @performance = Performance.find(params[:id])
+    @show = Show.find(@performance[:show_id])
+    @room = Room.find(@show[:room_id])
+    @venue = Venue.find(@room[:venue_id])
+    @performance.destroy
+    redirect_to venue_path(@venue)
+  end
+
   private
 
   # method for settting show, venue & room instance variables

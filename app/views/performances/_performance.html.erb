@@ -1,6 +1,9 @@
 
-<td style="border: 1px solid black"><b><%= performance.date %></b><br>
+<td style="border: 1px solid black"><%= performance.date %><br>
 <%= performance.time %><br>
-<%= link_to 'Edit', edit_performance_path(performance)%><br>
+<%= link_to 'Edit', edit_performance_path(performance)%>
+<%= link_to 'Delete', [performance],
+    method: :delete,
+    data: {confirm: "Are you sure you want to delete this performance?"}%>
 
 </td>
