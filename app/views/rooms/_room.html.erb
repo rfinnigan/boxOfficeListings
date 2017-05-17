@@ -1,6 +1,6 @@
 <p>
   <h2><%= room.roomName %></h2>
-  <%= link_to 'New Show', new_room_show_path(room) %>
+  <%= link_to 'New Show', new_show_path %>
   <%= link_to 'Edit Room', edit_room_path(room)%>
   <%= link_to 'Delete Room', [room],
   method: :delete,
@@ -13,6 +13,6 @@
     <th>Artist</th>
     <th>Title</th>
   </tr>
-  <%= render room.shows %>
+  <%= render @shows %>
 
 </table>

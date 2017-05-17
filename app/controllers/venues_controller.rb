@@ -6,11 +6,11 @@ class VenuesController < ApplicationController
 
   def show
     @venue = Venue.find(params[:id])
+    @shows = Show.all
   end
 
   def new
     @venue = Venue.new
-    2.times { @venue.rooms.build}
   end
 
   def edit

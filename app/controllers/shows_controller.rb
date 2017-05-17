@@ -1,6 +1,4 @@
 class ShowsController < ApplicationController
-  before_action :set_venue_and_room, only: [:index, :new, :create]
-
   def new
     @show = Show.new
   end
@@ -10,17 +8,20 @@ class ShowsController < ApplicationController
   end
 
   def create
-    @show = @room.shows.create(show_params)
-    redirect_to venue_path(id: @room.venue_id)
+    @show = Show.new(show_params)
+    if @show.save
+      redirect_to welcome_index_path
+    else
+      render 'new'
+    end
   end
 
   def update
     @show = Show.find(params[:id])
 
     if @show.update(show_params)
-      @room = Room.find(@show[:room_id])
-      @venue = Venue.find(@room[:venue_id])
-      redirect_to @venue
+
+      redirect_to welcome_index_path
     else
       render 'edit'
     end
@@ -28,22 +29,11 @@ class ShowsController < ApplicationController
 
   def destroy
     @show = Show.find(params[:id])
-    @room = Room.find(@show[:room_id])
-    @venue = Venue.find(@room[:venue_id])
     @show.destroy
-    redirect_to venue_path(@venue)
+    redirect_to welcome_index_path
   end
 
   private
-
-  # method for settting venue & room instance variables
-  # from passed room_id param
-  # when using shallow nesting this will only work when called
-  # from index, new and create as only these receive this param
-  def set_venue_and_room
-    @room = Room.find(params[:room_id])
-    @venue = Venue.find(@room[:venue_id])
-  end
 
   def show_params
       params.require(:show).permit(:artist, :title)
