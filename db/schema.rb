@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170517070512) do
+ActiveRecord::Schema.define(version: 20170517233838) do
 
   create_table "performances", force: :cascade do |t|
     t.date "date"
     t.time "time"
-    t.integer "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "show_id"
