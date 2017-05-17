@@ -1,4 +1,8 @@
 class ShowsController < ApplicationController
+  def index
+    @shows = Show.all
+  end
+
   def new
     @show = Show.new
   end
@@ -10,7 +14,7 @@ class ShowsController < ApplicationController
   def create
     @show = Show.new(show_params)
     if @show.save
-      redirect_to welcome_index_path
+      redirect_to shows_path
     else
       render 'new'
     end
@@ -21,7 +25,7 @@ class ShowsController < ApplicationController
 
     if @show.update(show_params)
 
-      redirect_to welcome_index_path
+      redirect_to shows_path
     else
       render 'edit'
     end
@@ -30,7 +34,7 @@ class ShowsController < ApplicationController
   def destroy
     @show = Show.find(params[:id])
     @show.destroy
-    redirect_to welcome_index_path
+    redirect_to shows_path
   end
 
   private
