@@ -1,3 +1,6 @@
 
-<td><b><%= performance.date %></b><br>
-<%= performance.time %></td>
+<td style="border: 1px solid black"><b><%= performance.date %></b><br>
+<%= performance.time %><br>
+<%= link_to 'Edit', edit_performance_path(performance)%><br>
+
+</td>

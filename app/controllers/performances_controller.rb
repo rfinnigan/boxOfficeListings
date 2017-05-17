@@ -5,9 +5,26 @@ class PerformancesController < ApplicationController
     @performance = Performance.new
   end
 
+  def edit
+    @performance = Performance.find(params[:id])
+  end
+
   def create
     @performance = @show.performances.create(performance_params)
     redirect_to venue_path(@venue)
+  end
+
+  def update
+    @performance = Performance.find(params[:id])
+
+    if @performance.update(performance_params)
+      @show = Show.find(@performance[:show_id])
+      @room = Room.find(@show[:room_id])
+      @venue = Venue.find(@room[:venue_id])
+      redirect_to @venue
+    else
+      render 'edit'
+    end
   end
 
   private
