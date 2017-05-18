@@ -1,7 +1,7 @@
 
 <tr>
-  <td><b><u><%= show.artist %></u></b></td>
-  <td><b><%= show.title %></b></td>
+  <td><b><u><%= show.artist %></u></b> (<%= show.nationality %>) </td>
+  <td><b><%= show.title %> - <%= show.duration %> mins </b></td>
   <td><%= link_to 'Edit Show', edit_show_path(show)%><br>
       <%= link_to 'New Performance', new_show_performance_path(show)%></td>
   <td><%= link_to 'Delete', [show],

@@ -40,6 +40,6 @@ class ShowsController < ApplicationController
   private
 
   def show_params
-      params.require(:show).permit(:artist, :title)
+      params.require(:show).permit(:artist, :title, :duration, :nationality)
   end
 end
