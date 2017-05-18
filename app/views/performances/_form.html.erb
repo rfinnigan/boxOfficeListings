@@ -22,8 +22,8 @@
     <%= f.time_field :time %>
   </p>
   <p>
-    <%= f.label :duration %><br>
-    <%= f.number_field :duration %>
+    <%= f.label :room %><br>
+    <%= f.collection_select :room_id, Room.all, :id, :full_name, prompt: true, selected: @performance.room_id %>
   </p>
   <p>
     <%= f.submit %>

@@ -1,8 +1,8 @@
 class PerformancesController < ApplicationController
-  before_action :set_venue_room_and_show, only: [:index, :new, :create]
+  before_action :set_show, only: [:index, :new, :create]
 
   def new
-    @performance = Performance.new
+    @performance = Performance.new(room_id: 1)
   end
 
   def edit
@@ -11,7 +11,11 @@ class PerformancesController < ApplicationController
 
   def create
     @performance = @show.performances.create(performance_params)
-    redirect_to venue_path(@venue)
+    if @performance.save
+      redirect_to shows_path
+    else
+      render 'new'
+    end
   end
 
   def update
@@ -19,9 +23,7 @@ class PerformancesController < ApplicationController
 
     if @performance.update(performance_params)
       @show = Show.find(@performance[:show_id])
-      @room = Room.find(@show[:room_id])
-      @venue = Venue.find(@room[:venue_id])
-      redirect_to @venue
+      redirect_to shows_path
     else
       render 'edit'
     end
@@ -30,25 +32,21 @@ class PerformancesController < ApplicationController
   def destroy
     @performance = Performance.find(params[:id])
     @show = Show.find(@performance[:show_id])
-    @room = Room.find(@show[:room_id])
-    @venue = Venue.find(@room[:venue_id])
     @performance.destroy
-    redirect_to venue_path(@venue)
+    redirect_to shows_path
   end
 
   private
 
-  # method for settting show, venue & room instance variables
-  # from passed room_id param
+  # method for settting show instance variable
+  # from passed show_id param
   # when using shallow nesting this will only work when called
   # from index, new and create as only these receive this param
-  def set_venue_room_and_show
+  def set_show
     @show = Show.find(params[:show_id])
-    @room = Room.find(@show[:room_id])
-    @venue = Venue.find(@room[:venue_id])
   end
 
   def performance_params
-      params.require(:performance).permit(:date, :time, :duration)
+      params.require(:performance).permit(:date, :time, :duration, :room_id)
   end
 end

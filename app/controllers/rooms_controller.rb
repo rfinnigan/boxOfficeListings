@@ -16,7 +16,11 @@ class RoomsController < ApplicationController
 
   def create
     @room = @venue.rooms.create(room_params)
-    redirect_to venue_path(@venue)
+    if @room.save
+      redirect_to venue_path(@venue)
+    else
+      render 'new'
+    end
   end
 
   def update

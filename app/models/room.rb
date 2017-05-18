@@ -6,4 +6,9 @@ class Room < ApplicationRecord
   validates :roomName, presence: true,
                        length: { minimum: 2 },
                        uniqueness: { case_sensitive: false }
+
+  # method to return the full Venue and Room name in the form Venue - Room
+  def full_name
+    Venue.find(venue_id).name + " - " + roomName
+  end
 end
