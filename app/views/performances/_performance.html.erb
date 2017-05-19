@@ -1,13 +1,21 @@
-
 <td style="border: 1px solid black">
-<% room = Room.find(performance.room_id) %>
-<%= Venue.find(room.venue_id).name %><br>
-<%= room.roomName %><br>
+
+<%-# local variable display_room denotes whether to render the room name -%>
+<%-#(by default the artist will be rendered) -%>
+
+<% if local_assigns[:display_room] %>
+  <% room = Room.find(performance.room_id) %>
+  <%= Venue.find(room.venue_id).name %><br>
+  <%= room.roomName %><br>
+<% else %>
+  <% show = Show.find(performance.show_id) %>
+  <%= show.artist %><br>
+<% end %>
+
 <%= performance.date %><br>
 <%= performance.time %><br>
 <%= link_to 'Edit', edit_performance_path(performance)%>
 <%= link_to 'Delete', [performance],
     method: :delete,
     data: {confirm: "Are you sure you want to delete this performance?"}%>
-
 </td>
