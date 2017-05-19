@@ -1,5 +1,9 @@
 
-<td style="border: 1px solid black"><%= performance.date %><br>
+<td style="border: 1px solid black">
+<% room = Room.find(performance.room_id) %>
+<%= Venue.find(room.venue_id).name %><br>
+<%= room.roomName %><br>
+<%= performance.date %><br>
 <%= performance.time %><br>
 <%= link_to 'Edit', edit_performance_path(performance)%>
 <%= link_to 'Delete', [performance],
