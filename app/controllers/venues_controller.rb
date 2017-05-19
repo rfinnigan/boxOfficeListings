@@ -44,6 +44,12 @@ class VenuesController < ApplicationController
     redirect_to venues_path
   end
 
+  def import
+    Venue.import(params[:file])
+    # after import, redirect and let us know the method worked!
+    redirect_to 'index', notice: "Venues Data imported!"
+  end
+
   private
 
   def venue_params

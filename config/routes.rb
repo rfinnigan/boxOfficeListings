@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
+  resources :venues do
+    collection { post :import }
+  end
+
   shallow do
     resources :venues do
       resources :rooms do
