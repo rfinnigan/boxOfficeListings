@@ -6,7 +6,6 @@ class VenuesController < ApplicationController
 
   def show
     @venue = Venue.find(params[:id])
-
   end
 
   def new
@@ -45,9 +44,10 @@ class VenuesController < ApplicationController
   end
 
   def import
+
     Venue.import(params[:file])
     # after import, redirect and let us know the method worked!
-    redirect_to 'index', notice: "Venues Data imported!"
+    redirect_to venues_path, notice: "Venues Data imported!"
   end
 
   private

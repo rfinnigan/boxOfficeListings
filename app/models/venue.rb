@@ -12,7 +12,9 @@ class Venue < ApplicationRecord
     # a block that runs through a loop in our CSV data
     CSV.foreach(file.path, headers: true) do |row|
       # creates a venue for each row in the CSV file
-      Venue.create! row.to_hash
+      @venue = Venue.new(row.to_hash)
+
+      @venue.save if @Venue.valid?
     end
   end
 end
