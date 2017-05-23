@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  get 'performance_imports/new'
+
   get 'welcome/index'
 
   resources :venues do
     collection { post :import }
   end
+
+  resources :performance_imports
 
   shallow do
     resources :venues do
