@@ -1,19 +1,12 @@
 Rails.application.routes.draw do
-  get 'performance_imports/new'
-
   get 'welcome/index'
-
-  resources :venues do
-    collection { post :import }
-  end
-
-  resources :performance_imports
 
   shallow do
     resources :venues do
       resources :rooms do
         resources :performances
       end
+      collection { post :import }
     end
   end
 
@@ -22,6 +15,8 @@ Rails.application.routes.draw do
       resources :performances
     end
   end
+
+  resources :performance_imports, only: %i[new create]
 
   root 'welcome#index'
 
