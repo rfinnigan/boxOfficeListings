@@ -7,6 +7,12 @@
       <li>
         <strong><%= column.name %></strong> -
         <%= column.type.to_s.titleize %> type
+        <% if column.name == "date"%>
+        (must be in format yyyy-mm-dd ie 2018-12-25)
+        <% end %>
+        <% if column.name == "time"%>
+        (24hr format)
+        <% end %>
       </li>
     <% end %>
   <% end %>

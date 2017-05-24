@@ -3,6 +3,7 @@ class PerformanceImport
   attr_accessor :file
 
   def initialize(attributes = {})
+    #raise 'No File Selected' if attributes.blank?
     attributes.each { |name, value| send("#{name}=", value) }
   end
 
