@@ -1,3 +1,4 @@
+# Model class which takes a CSV file and mass imports Performances from it
 class PerformanceImport
   include ActiveModel::Model
   attr_accessor :file
