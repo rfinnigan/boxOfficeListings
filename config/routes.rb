@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   get 'welcome/index'
+  get 'performance_imports' => 'performance_imports#new'
 
   shallow do
     resources :venues do
       resources :rooms do
         resources :performances
       end
-      collection { post :import }
     end
   end
 
