@@ -4,7 +4,6 @@ class PerformanceImport
   attr_accessor :file
 
   def initialize(attributes = {})
-    # raise 'No File Selected' if attributes.blank?
     attributes.each { |name, value| send("#{name}=", value) }
   end
 
@@ -30,12 +29,30 @@ class PerformanceImport
     performances = []
     CSV.foreach(file.path, headers: true) do |row|
       performance = Performance.find_by(id: row['id']) || Performance.new
-      performance.attributes = row.to_hash
+      performance.attributes = row_to_perf_attributes(row.to_hash)
       Rails.logger.debug "Performance attributes hash:
                           #{performance.attributes.inspect}"
       performances.push(performance)
     end
     performances
+  end
+
+  # class method which takes the hash of arow from the csv
+  # and converts it to a set of performance attributes
+  def row_to_perf_attributes(row_attribs = {})
+    show_id = Show.find_or_create(
+      title: row_attribs['show title'],
+      artist: row_attribs['artist'],
+      duration: row_attribs['duration'],
+      nationality: row_attribs['nationality']
+    ).id
+    attributes = {
+      date: row_attribs['date'],
+      time: row_attribs['time'],
+      show_id: show_id,
+      room_id: row_attribs['room_id']
+    }
+    attributes
   end
 
   private
