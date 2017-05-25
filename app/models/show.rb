@@ -10,4 +10,10 @@ class Show < ApplicationRecord
   after_initialize do |show|
       show.duration ||= 60
   end
+
+  # method to return the nationality in brackets if it exists
+  def bracketed_nationality
+    return if nationality.nil?
+    '(' + nationality + ')'
+  end
 end
