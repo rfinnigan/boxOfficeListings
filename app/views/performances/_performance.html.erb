@@ -13,7 +13,7 @@
 <% end %>
 
 <%= performance.date %><br>
-<%= performance.time %><br>
+<%= performance.time %> - <%= performance.end_time %><br>
 <%= link_to 'Edit', edit_performance_path(performance)%>
 <%= link_to 'Delete', [performance],
     method: :delete,
