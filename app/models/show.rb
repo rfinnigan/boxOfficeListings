@@ -16,4 +16,10 @@ class Show < ApplicationRecord
   def self.find_or_create(attributes = {})
     find_by(title: attributes[:title]) || Show.create(attributes)
   end
+
+  # method to return the nationality in brackets if it exists
+  def bracketed_nationality
+    return if nationality.nil?
+    '(' + nationality + ')'
+  end
 end

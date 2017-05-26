@@ -1,6 +1,6 @@
 
 <tr>
-  <td><b><u><%= show.artist %></u></b> (<%= show.nationality %>) </td>
+  <td><b><u><%= show.artist %></u></b> <%= show.bracketed_nationality %> </td>
   <td><b><%= show.title %> - <%= show.duration %> mins </b></td>
   <td><%= link_to 'Edit Show', edit_show_path(show)%><br>
       <%= link_to 'Add Performance', new_show_performance_path(show)%></td>
