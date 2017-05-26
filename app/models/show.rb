@@ -1,9 +1,14 @@
 class Show < ApplicationRecord
-  has_many :performances, dependent: :destroy
-  has_many :rooms, through: :performances
-  validates :title, presence: true,
-                    length: { minimum: 2 }
-  validates :duration, presence: true
+  has_many :performances, dependent: :destroy, inverse_of: :show
+  has_many :rooms, through: :performances, inverse_of: :show
+  validates :title, presence: true, unless: ->(show) { show.artist.present? },
+                    length: { minimum: 2 },
+                    uniqueness: { scope: :artist }
+  validates :artist, presence: true, unless: ->(show) { show.title.present? },
+                     length: { minimum: 2 },
+                     uniqueness: { scope: :title }
+  validates :duration, presence: true, numericality: { only_integer: true,
+                                                       greater_than: 0 }
   validates :nationality, length: { maximum: 4 }
 
   # method to set default show length to 1 hr if not set during initialize
@@ -20,7 +25,7 @@ class Show < ApplicationRecord
 
   # method to return the nationality in brackets if it exists
   def bracketed_nationality
-    return if nationality.nil?
+    return unless nationality.present?
     '(' + nationality + ')'
   end
 
