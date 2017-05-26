@@ -1,7 +1,7 @@
 <td style="border: 1px solid black">
 
 <%-# local variable display_room denotes whether to render the room name -%>
-<%-#(by default the artist will be rendered) -%>
+<%-# (by default the artist (or title if no artist) will be rendered) -%>
 
 <% if local_assigns[:display_room] %>
   <% room = Room.find(performance.room_id) %>
@@ -9,7 +9,7 @@
   <%= room.roomName %><br>
 <% else %>
   <% show = Show.find(performance.show_id) %>
-  <%= show.artist %><br>
+  <%= show.artist_or_title %><br>
 <% end %>
 
 <%= performance.date %><br>
