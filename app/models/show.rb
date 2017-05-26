@@ -23,4 +23,9 @@ class Show < ApplicationRecord
     return if nationality.nil?
     '(' + nationality + ')'
   end
+
+  # method to return artist if it exists otherwise title
+  def artist_or_title
+    artist || title
+  end
 end
