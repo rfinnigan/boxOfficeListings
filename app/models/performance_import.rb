@@ -49,7 +49,7 @@ class PerformanceImport
     room_id = Room.find_or_create(
       room_name: row_attribs['room'],
       venue_name: row_attribs['venue']
-      ).id
+    ).id
     attributes = {
       date: row_attribs['date'],
       time: row_attribs['time'],

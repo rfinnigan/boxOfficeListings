@@ -16,6 +16,7 @@ class Performance < ApplicationRecord
   end
 
   def cannot_overlap_another_perf
+    return if room.blank?
     range = Range.new time, end_time
     room.performances.date(date).exclude_self(id).each do |other_perf|
       overlap_error if range.overlaps?(other_perf.time..other_perf.end_time)
